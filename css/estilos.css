@@ -69,15 +69,7 @@ body.fouc {
   animation-name: fouc;
   animation-fill-mode: forwards;
   animation-duration: 1s;
-
-
-  
-  background-image: url('../img/fondo.png');
-  background-size: cover;  /* La imagen cubrirá todo el fondo */
-  background-position: center;  
-  background-repeat: no-repeat;  
-  margin: 0;   
-  height: 100vh;  
+ 
 }
 
 html {

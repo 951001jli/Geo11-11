@@ -5,9 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
 
-  <title>
-    Geo 11:11 - app
-  </title>
 
   <meta name="theme-color" content="#fffbfe">
   <link rel="icon" sizes="48x48" href="favicon.ico">
@@ -25,59 +22,56 @@
   </script>
   <script type="module" src="js/configura.js"></script>
 
+
+  <title>
+    Media 11:11 - app
+  </title>
+
+ <style>
+  html {
+   color-scheme: light dark;
+  }
+ </style>
+
 </head>
 
 <body>
-  
+
 
     <md-top-app-bar adicional="tab" headline="headline">
-      <h1 class="centrar-texto">Geo 11:11</h1>
+        <h1 class="centrar-texto">Geo 11:11</h1>
+  
+      </md-top-app-bar>
+      <nav-tab-fixed id="tab"></nav-tab-fixed>
+  
 
-    </md-top-app-bar>
-    <nav-tab-fixed id="tab"></nav-tab-fixed>
+ <h1>Archivos y Cámara</h1>
 
-    <main>
+ <p>
+  <label>
+   Foto de Móvil
+   <input type="file"
+     accept="image/*"
+     capture="camera">
+  </label>
+ </p>
 
-  <p>
-   <label>
-    Latitud
-    <output id="latitud"></output>
-   </label>
-  </p>
- 
-  <p>
-   <label>
-    Longitud
-    <output id="longitud"></output>
-   </label>
-  </p>
- 
-  <script>
- 
-   navigator.geolocation.
-    watchPosition(p => {
- 
-     latitud.value =
-      p.coords.latitude
- 
-     longitud.value =
-      p.coords.longitude
- 
-    });
- 
-  </script>
- 
+ <p>
+  <label>
+   Video de Móvil
+   <input type="file"
+     accept="video/*"
+     capture="">
+  </label>
+ </p>
 
-
-    </main>
-
- 
-
-
+ <p>
+  <label>
+   Archivo
+   <input type="file">
+  </label>
+ </p>
 
 </body>
 
 </html>
-
-
-

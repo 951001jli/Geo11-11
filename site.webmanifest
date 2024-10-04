@@ -1,6 +1,6 @@
 {
- "short_name": "Chistecnológico UTN",
- "name": "PWA de chistes con Material Design",
+ "short_name": "Geo 11:11 media app",
+ "name": "Geo 11:11 media app",
  "id": "/index.html",
  "start_url": "/index.html",
  "display": "standalone",
@@ -9,7 +9,7 @@
  "display_override": [
   "window-controls-overlay"
  ],
- "description": "Chistecnológico UTN, PWA de chistes con Material Design.",
+ "description": "Geo 11:11 media app, PWA con función a geolocalización.",
  "screenshots": [
   {
    "src": "/img/screenshot_horizontal.png",

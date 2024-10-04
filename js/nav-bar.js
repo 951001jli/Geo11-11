@@ -7,8 +7,13 @@ export class NavBar extends HTMLElement {
 
   this.innerHTML = /* HTML */`
    <a ${resaltaSiEstasEn(["/index.html", "", "/"])} href="index.html">
-    <span class="material-symbols-outlined">home</span>
-    Inicio
+    <span class="material-symbols-outlined">map</span>
+    Geolocalización
+   </a>
+  
+       <a ${resaltaSiEstasEn(["/media.html"])} href="media.html">
+     <span class="material-symbols-outlined">add_photo_alternate</span>
+    Media
    </a>
 
    <a ${resaltaSiEstasEn(["/navTabFixed.html"])} href="navTabFixed.html">
