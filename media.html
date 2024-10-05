@@ -3,8 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Escalado inicial agregado -->
   <meta name="theme-color" content="#fffbfe">
   <link rel="icon" sizes="48x48" href="favicon.ico">
   <link rel="manifest" href="site.webmanifest">
@@ -16,7 +15,7 @@
   <link rel="stylesheet" href="css/light-hc.css">
   <link rel="stylesheet" href="css/light-mc.css">
   <link rel="stylesheet" href="css/light.css">
-  
+
   <script src="ungap/custom-elements.js"></script>
   <script type="module" src="js/configura.js"></script>
 
@@ -27,14 +26,25 @@
       color-scheme: light dark;
     }
 
-    .custom-card {
-      border: 2px solid #b3e5fc; /* Azul muy claro */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Centrar el contenido */
+    }
+
+    .custom-card { 
       border-radius: 30px;
       padding: 16px;
-      background-color: #e1f5fe; /* Fondo azul muy claro */
+      background-color: #e5e5e5; /* Fondo azul muy claro */
       max-width: 400px;
+      width: 100%; /* Ancho completo en pantallas pequeñas */
       margin: 20px auto;
       box-shadow: var(--md-sys-elevation-level2); /* Sombra del MD3 */
+      display: flex;
+      flex-direction: column; /* Alinear los elementos verticalmente */
     }
 
     p {
@@ -45,6 +55,23 @@
       display: block;
       margin-bottom: 8px;
     }
+
+    input[type="file"] {
+      width: 100%; /* Ancho completo para inputs */
+      padding: 8px; /* Espaciado interno */
+      border-radius: 25px; /* Bordes redondeados */
+      border: 1px solid #ccc; /* Borde gris */
+    }
+
+    @media (max-width: 600px) {
+      .custom-card {
+        max-width: 90%; /* Ancho máximo en pantallas pequeñas */
+      }
+
+      h1 {
+        font-size: 1.4em; /* Tamaño de fuente más pequeño en pantallas pequeñas */
+      }
+    }
   </style>
 
 </head>
@@ -52,10 +79,8 @@
 <body>
 
   <md-top-app-bar adicional="tab" headline="headline">
-    <h1 class="centrar-texto">Archivos y cámara</h1>
+    <h1 style="text-align: center; font-size: 1.6em; font-weight: bold;">Archivos y cámara</h1>
   </md-top-app-bar>
-
-  
 
   <div class="custom-card">
     <p>

@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Escalado inicial agregado -->
   <title>Cámara</title>
   <meta name="theme-color" content="#fffbfe">
   <link rel="icon" sizes="48x48" href="favicon.ico">
@@ -18,44 +18,81 @@
   <script src="ungap/custom-elements.js"></script>
   <script type="module" src="js/configura.js"></script>
   <style>
-
     html {
       color-scheme: light dark;
     }
-    
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      padding: 10px;
+    }
+
     .button-container {
       background-color: #e3f2fd; /* Azul muy claro */
-      border-radius: 35px;  
-      padding: 16px; 
+      border-radius: 35px;
+      padding: 16px;
       display: flex;
-      justify-content: space-around;  
-      margin: 20px;  
+      flex-wrap: wrap; /* Permite que los botones se ajusten */
+      justify-content: space-around;
+      margin: 20px 0; /* Ajustado para más espacio vertical */
     }
-    
+
     button {
       background-color: #1976d2; /* Color del botón */
       color: white; /* Color del texto */
-      border: none;  
-      border-radius: 25px; 
-      padding: 10px 18px; 
-      cursor: pointer;  
-      transition: background-color 0.3s;  
+      border: none;
+      border-radius: 25px;
+      padding: 10px 18px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      flex: 1 1 45%; /* Hace que los botones sean responsivos */
+      margin: 5px; /* Espaciado entre botones */
     }
-    
+
     button:hover {
       background-color: #1565c0; /* Color del botón al pasar el mouse */
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Centramos el contenido */
+    }
+
+    section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 10px; /* Espaciado entre secciones */
+    }
+
+    video,
+    canvas {
+      width: 100%; /* Ajusta el ancho al 100% del contenedor */
+      max-width: 160px; /* Tamaño máximo */
+      height: auto; /* Mantiene la proporción */
+    }
+
+    @media (max-width: 600px) {
+      button {
+        flex: 1 1 100%; /* Los botones ocupan el 100% en pantallas pequeñas */
+      }
+
+      video,
+      canvas {
+        max-width: 100%; /* Permite que el video y el canvas sean más grandes en pantallas pequeñas */
+      }
     }
   </style>
 </head>
 
 <body>
   <md-top-app-bar adicional="tab" headline="headline">
-    <h1 class="centrar-texto">Cámara</h1>
+    <h1 style="text-align: center; font-size: 1.6em; font-weight: bold;">Cámara</h1>
   </md-top-app-bar>
 
   <main>
-   
-
     <p>
       Para grabar o capturar imagen, cliquea
       <strong>Inicia</strong>.
@@ -80,96 +117,96 @@
       <button type="button" onclick="captura()">Captura</button>
     </div>
 
-    <section style="display: inline-block; vertical-align: top;">
+    <section>
       <h1>Preview</h1>
-      <video id="preview" width="160" height="120" autoplay muted></video>
+      <video id="preview" autoplay muted></video>
     </section>
 
-    <section style="display: inline-block; vertical-align: top;">
+    <section>
       <h1>Recording</h1>
-      <video id="recording" width="160" height="120" controls></video>
+      <video id="recording" controls></video>
       <p>
         <a id="descarga">Descarga</a>
       </p>
       <div id="mensajes"></div>
     </section>
 
-    <section style="display: inline-block; vertical-align: top;">
+    <section>
       <h1>Imagen</h1>
-      <canvas id="canvas" width="160" height="120"></canvas>
+      <canvas id="canvas"></canvas>
       <p>
         <a id="descargaImagen">Descarga</a>
       </p>
     </section>
 
     <script>
-      let stream = null
-      let TIEMPO_DE_GRABACION = 5000
-      var context = canvas.getContext('2d')
+      let stream = null;
+      let TIEMPO_DE_GRABACION = 5000;
+      var context = canvas.getContext('2d');
 
       async function inicia() {
         try {
           stream = await navigator.mediaDevices.getUserMedia({
             video: true,
             audio: true
-          })
-          preview.srcObject = stream
-          descarga.href = stream
-          preview.captureStream = preview.captureStream || preview.mozCaptureStream
-          await new Promise(resolve => preview.onplaying = resolve)
+          });
+          preview.srcObject = stream;
+          descarga.href = stream;
+          preview.captureStream = preview.captureStream || preview.mozCaptureStream;
+          await new Promise(resolve => preview.onplaying = resolve);
         } catch (e) {
-          log(e.message)
+          log(e.message);
         }
       }
 
       async function graba() {
         try {
-          const recordedChunks = await grabaClip(stream, TIEMPO_DE_GRABACION)
-          let recordedBlob = new Blob(recordedChunks, { type: "video/webm" })
-          recording.src = URL.createObjectURL(recordedBlob)
-          descarga.href = recording.src
-          descarga.download = "RecordedVideo.webm"
+          const recordedChunks = await grabaClip(stream, TIEMPO_DE_GRABACION);
+          let recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
+          recording.src = URL.createObjectURL(recordedBlob);
+          descarga.href = recording.src;
+          descarga.download = "RecordedVideo.webm";
 
-          log("Exitosamente grabados " + recordedBlob.size + " bytes de " + recordedBlob.type + " media.")
+          log("Exitosamente grabados " + recordedBlob.size + " bytes de " + recordedBlob.type + " media.");
         } catch (e) {
-          log(e.message)
+          log(e.message);
         }
       }
 
       function para() {
-        detiene(preview.srcObject)
+        detiene(preview.srcObject);
       }
 
       function captura() {
-        context.drawImage(preview, 0, 0, 160, 120)
-        descargaImagen.href = canvas.toDataURL('image/jpeg')
-        descargaImagen.download = "imagen.jpg"
+        context.drawImage(preview, 0, 0, canvas.width, canvas.height);
+        descargaImagen.href = canvas.toDataURL('image/jpeg');
+        descargaImagen.download = "imagen.jpg";
       }
 
       function grabaClip(stream, milisegundos) {
-        let recorder = new MediaRecorder(stream)
-        let data = []
-        recorder.ondataavailable = event => data.push(event.data)
-        recorder.start()
-        log(recorder.state + " durante " + (milisegundos / 1000) + " segundos…")
+        let recorder = new MediaRecorder(stream);
+        let data = [];
+        recorder.ondataavailable = event => data.push(event.data);
+        recorder.start();
+        log(recorder.state + " durante " + (milisegundos / 1000) + " segundos…");
         let detenido = new Promise((resolve, reject) => {
-          recorder.onstop = resolve
-          recorder.onerror = event => reject(event.name)
-        })
-        let grabado = espera(milisegundos).then(() => recorder.state === "recording" && recorder.stop())
-        return Promise.all([detenido, grabado]).then(() => data)
+          recorder.onstop = resolve;
+          recorder.onerror = event => reject(event.name);
+        });
+        let grabado = espera(milisegundos).then(() => recorder.state === "recording" && recorder.stop());
+        return Promise.all([detenido, grabado]).then(() => data);
       }
 
       function detiene(stream) {
-        stream.getTracks().forEach(track => track.stop())
+        stream.getTracks().forEach(track => track.stop());
       }
 
       function log(msg) {
-        mensajes.innerHTML += msg + "<br>"
+        mensajes.innerHTML += msg + "<br>";
       }
 
       function espera(milisegundos) {
-        return new Promise(resolve => setTimeout(resolve, milisegundos))
+        return new Promise(resolve => setTimeout(resolve, milisegundos));
       }
     </script>
   </main>
