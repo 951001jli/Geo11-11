@@ -18,8 +18,15 @@ export class NavDrw extends MdNavigationDrawer {
 
      <a ${resaltaSiEstasEn(["/media.html"])} href="media.html">
      <span class="material-symbols-outlined">add_photo_alternate</span>
-    Media
+    Archivos
    </a>
+
+
+        <a ${resaltaSiEstasEn(["/camara.html"])} href="camara.html">
+    <span class="material-symbols-outlined">add_a_photo</span>
+    Cámara
+   </a>
+
 
    <a ${resaltaSiEstasEn(["/ayuda.html"])} href="ayuda.html">
     <span class="material-symbols-outlined">help</span>
