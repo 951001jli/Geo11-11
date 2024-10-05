@@ -8,7 +8,7 @@ export class NavBar extends HTMLElement {
   this.innerHTML = /* HTML */`
    <a ${resaltaSiEstasEn(["/index.html", "", "/"])} href="index.html">
     <span class="material-symbols-outlined">map</span>
-    Geolocalización
+    GPS
    </a>
   
        <a ${resaltaSiEstasEn(["/media.html"])} href="media.html">
@@ -21,19 +21,9 @@ export class NavBar extends HTMLElement {
     Cámara
    </a>
 
-   <a ${resaltaSiEstasEn(["/navTabFixed.html"])} href="navTabFixed.html">
-    <span class="material-symbols-outlined">tabs</span>
-    Pestañas
-   </a>
-
-   <a ${resaltaSiEstasEn(["/navbar.html"])} href="navbar.html">
-    <span class="material-symbols-outlined">bottom_navigation</span>
-    Barra
-   </a>
-
-   <a ${resaltaSiEstasEn(["/formulario.html"])} href="formulario.html">
-    <span class="material-symbols-outlined">newspaper</span>
-    Forma
+     <a ${resaltaSiEstasEn(["/ayuda.html"])} href="ayuda.html">
+    <span class="material-symbols-outlined">help</span>
+    Ayuda
    </a>`
 
  }

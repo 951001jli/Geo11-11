@@ -13,7 +13,7 @@ export class NavDrw extends MdNavigationDrawer {
   
    <a ${resaltaSiEstasEn(["/index.html", "", "/"])} href="index.html">
     <span class="material-symbols-outlined">map</span>
-    Geolocalización
+    GPS
    </a>
 
      <a ${resaltaSiEstasEn(["/media.html"])} href="media.html">
