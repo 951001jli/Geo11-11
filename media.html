@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
 
-
   <meta name="theme-color" content="#fffbfe">
   <link rel="icon" sizes="48x48" href="favicon.ico">
   <link rel="manifest" href="site.webmanifest">
@@ -18,62 +17,70 @@
   <link rel="stylesheet" href="css/light-mc.css">
   <link rel="stylesheet" href="css/light.css">
   
-  <script src="ungap/custom-elements.js">
-  </script>
+  <script src="ungap/custom-elements.js"></script>
   <script type="module" src="js/configura.js"></script>
 
+  <title>Archivos y Cámara</title>
 
-  <title>
-    Archivos y Cámara
-  </title>
+  <style>
+    html {
+      color-scheme: light dark;
+    }
 
- <style>
-  html {
-   color-scheme: light dark;
-  }
- </style>
+    .custom-card {
+      border: 2px solid #b3e5fc; /* Azul muy claro */
+      border-radius: 30px;
+      padding: 16px;
+      background-color: #e1f5fe; /* Fondo azul muy claro */
+      max-width: 400px;
+      margin: 20px auto;
+      box-shadow: var(--md-sys-elevation-level2); /* Sombra del MD3 */
+    }
+
+    p {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+  </style>
 
 </head>
 
 <body>
 
+  <md-top-app-bar adicional="tab" headline="headline">
+    <h1 class="centrar-texto">Archivos y cámara</h1>
+  </md-top-app-bar>
 
-    <md-top-app-bar adicional="tab" headline="headline">
-        <h1 class="centrar-texto">Archivos y cámara</h1>
-  
-      </md-top-app-bar>
-     
   
 
- <h1>Archivos y Cámara</h1>
+  <div class="custom-card">
+    <p>
+      <label>
+        Foto de Móvil
+        <input type="file" accept="image/*" capture="camera">
+      </label>
+    </p>
 
- <p>
-  <label>
-   Foto de Móvil
-   <input type="file"
-     accept="image/*"
-     capture="camera">
-  </label>
- </p>
+    <p>
+      <label>
+        Video de Móvil
+        <input type="file" accept="video/*" capture="">
+      </label>
+    </p>
 
- <p>
-  <label>
-   Video de Móvil
-   <input type="file"
-     accept="video/*"
-     capture="">
-  </label>
- </p>
+    <p>
+      <label>
+        Archivo
+        <input type="file">
+      </label>
+    </p>
+  </div>
 
- <p>
-  <label>
-   Archivo
-   <input type="file">
-  </label>
- </p>
-
-
- <nav-bar></nav-bar>
+  <nav-bar></nav-bar>
 
 </body>
 

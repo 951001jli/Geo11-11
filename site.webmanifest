@@ -9,7 +9,7 @@
  "display_override": [
   "window-controls-overlay"
  ],
- "description": "Geo 11:11 media app, PWA con función a geolocalización.",
+ "description": "Geo 11:11 media app, PWA con función a geolocalización, archivos y cámara.",
  "screenshots": [
   {
    "src": "/img/screenshot_horizontal.png",

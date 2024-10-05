@@ -21,70 +21,68 @@
   <link rel="stylesheet" href="css/light-mc.css">
   <link rel="stylesheet" href="css/light.css">
   
-  <script src="ungap/custom-elements.js">
-  </script>
+  <script src="ungap/custom-elements.js"></script>
   <script type="module" src="js/configura.js"></script>
+
+  <style>
+    html {
+      color-scheme: light dark;
+    }
+
+    .gps-container {
+      background-color: #bde8ff; /* Azul muy claro */
+      border-radius: 30px;
+      padding: 16px;
+      margin: 20px;
+      text-align: center;
+      color: #004579; /* Color de texto (oscuro para contraste) */
+      font-size: 1.2em;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para elevar el recuadro */
+    }
+
+    .gps-label {
+      font-weight: bold;
+      display: block;
+    }
+
+    output {
+      display: block;
+      margin-top: 8px;
+      font-size: 1.4em;
+    }
+  </style>
 
 </head>
 
-<style>
-  html {
-  color-scheme: light dark;
-    }
-</style>
-
-
 <body>
-  
 
-    <md-top-app-bar adicional="tab" headline="headline">
-      <h1 class="centrar-texto">Geolocalización</h1>
+  <md-top-app-bar adicional="tab" headline="headline">
+    <h1 class="centrar-texto">Geolocalización</h1>
+  </md-top-app-bar>
 
-    </md-top-app-bar> 
+  <main>
 
-    <main>
+    <div class="gps-container">
+      <label class="gps-label">Latitud</label>
+      <output id="latitud">Cargando...</output>
+    </div>
 
-  <p>
-   <label>
-    Latitud
-    <output id="latitud"></output>
-   </label>
-  </p>
- 
-  <p>
-   <label>
-    Longitud
-    <output id="longitud"></output>
-   </label>
-  </p>
- 
-  <script>
- 
-   navigator.geolocation.
-    watchPosition(p => {
- 
-     latitud.value =
-      p.coords.latitude
- 
-     longitud.value =
-      p.coords.longitude
- 
-    });
- 
-  </script>
- 
+    <div class="gps-container">
+      <label class="gps-label">Longitud</label>
+      <output id="longitud">Cargando...</output>
+    </div>
 
+    <script>
+      navigator.geolocation.watchPosition(p => {
+        document.getElementById('latitud').value = p.coords.latitude;
+        document.getElementById('longitud').value = p.coords.longitude;
+      });
+    </script>
 
-    </main>
+  </main>
 
- 
-
-    <nav-bar></nav-bar>
+  <nav-bar></nav-bar>
 
 </body>
 
 </html>
-
-
-
-
