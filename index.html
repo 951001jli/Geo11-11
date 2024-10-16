@@ -1,70 +1,64 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="light dark">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width">
 
-  <title>
-    GPS - Geo 11:11
-  </title>
+ <meta charset="UTF-8">
+ <title>Geolocalización - Geo11:11 </title>
 
-  <meta name="theme-color" content="#fffbfe">
-  <link rel="icon" sizes="48x48" href="favicon.ico">
-  <link rel="manifest" href="site.webmanifest">
+ <script src="js/registraServiceWorker.js"></script>
 
-  <link rel="stylesheet" href="css/estilos.css">
-  <link rel="stylesheet" href="css/dark-hc.css">
-  <link rel="stylesheet" href="css/dark-mc.css">
-  <link rel="stylesheet" href="css/dark.css">
-  <link rel="stylesheet" href="css/light-hc.css">
-  <link rel="stylesheet" href="css/light-mc.css">
-  <link rel="stylesheet" href="css/light.css">
-  
-  <script src="ungap/custom-elements.js"></script>
-  <script type="module" src="js/configura.js"></script>
+ <meta name="viewport" content="width=device-width">
+ <meta name="theme-color" content="#fffbfe">
+ <link rel="icon" sizes="16x16" href="favicon.ico">
+ <link rel="manifest" href="site.webmanifest">
+ <script src="ungap/custom-elements.js"></script>
 
-  <style>
-    html {
-      color-scheme: light dark;
-    }
-
-
-
-  
-  </style>
+ <script type="module" src="js/configura.js"></script>
+ <link rel="stylesheet" href="css/estilos.css">
+ <link rel="stylesheet" href="css/transicion_pestanas.css">
+ <link rel="expect" blocking="render" href="#navtabfixed">
 
 </head>
 
 <body>
 
-  <md-top-app-bar adicional="tab" headline="headline">
-    <h1 style="text-align: left; font-size: 1.6em; font-weight: bold; margin-left: 20px;">Geolocalización</h1>
-</md-top-app-bar>
-  
+ <md-top-app-bar adicional="tab" headline="headline">
 
-  <main>
+ 
 
-    <div class="gps-container">
-      <label class="gps-label">Latitud</label>
+ </md-top-app-bar>
+
+ <h1 id="headline">Geolocalización</h1>
+
+ <nav-tab-fixed id="tab"></nav-tab-fixed>
+
+ <main>
+ 
+  <p>
+    <label class="md-filled-text-field float">
       <output id="latitud">Cargando...</output>
-    </div>
+     <span>Latitud</span>
+    </label>
+   </p>
 
-    <div class="gps-container">
-      <label class="gps-label">Longitud</label>
+   
+  <p>
+    <label class="md-filled-text-field float">
       <output id="longitud">Cargando...</output>
-    </div>
+     <span>Longitud</span>
+    </label>
+   </p>
+   
+ </main>
 
-    <script>
-      navigator.geolocation.watchPosition(p => {
-        document.getElementById('latitud').value = p.coords.latitude;
-        document.getElementById('longitud').value = p.coords.longitude;
-      });
-    </script>
 
-  </main>
-
-  <nav-bar></nav-bar>
+ <script>
+  navigator.geolocation.watchPosition(p => {
+    document.getElementById('latitud').value = p.coords.latitude;
+    document.getElementById('longitud').value = p.coords.longitude;
+  });
+</script>
 
 </body>
 

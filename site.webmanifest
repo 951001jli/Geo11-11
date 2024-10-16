@@ -1,6 +1,6 @@
 {
- "short_name": "Geo 11:11 media app",
- "name": "Geo 11:11 media app",
+ "short_name": "PWA con MD",
+ "name": "PWA con Material Design",
  "id": "/index.html",
  "start_url": "/index.html",
  "display": "standalone",
@@ -9,18 +9,18 @@
  "display_override": [
   "window-controls-overlay"
  ],
- "description": "Geo 11:11 media app, PWA con función a geolocalización, archivos y cámara.",
+ "description": "PWA con componentes de Material Design.",
  "screenshots": [
   {
    "src": "/img/screenshot_horizontal.png",
-   "sizes": "2326x1326",
+   "sizes": "1257x646",
    "type": "image/png",
    "form_factor": "wide",
    "label": "PWA con Material Design"
   },
   {
    "src": "/img/screenshot_vertical.png",
-   "sizes": "992x1326",
+   "sizes": "595x644",
    "type": "image/png",
    "form_factor": "narrow",
    "label": "PWA con Material Design (2)"
@@ -71,7 +71,7 @@
   },
   {
    "src": "/img/maskable_icon.png",
-   "sizes": "862x862",
+   "sizes": "3413x3413",
    "type": "image/png",
    "purpose": "any"
   },
@@ -125,7 +125,7 @@
   },
   {
    "src": "/img/maskable_icon.png",
-   "sizes": "862x862",
+   "sizes": "3413x3413",
    "type": "image/png",
    "purpose": "maskable"
   }
