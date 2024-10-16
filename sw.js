@@ -1,4 +1,4 @@
-const VERSION = "2.03";
+const VERSION = "2.04";
 const CACHE = "pwamd";
 const ARCHIVOS = [/*... archivos ...*/];
 
@@ -16,7 +16,7 @@ if (self instanceof ServiceWorkerGlobalScope) {
   self.addEventListener("fetch", (event) => {
     if (event.request.method === "GET") {
       event.respondWith(
-        buscaLaRespuestaEnElCache(event).catch(() => {
+        buscaLaRespuestaEnElCache(event.request).catch(() => {
           return new Response("Error al cargar la página", {
             status: 408,
             statusText: "Request Timeout"
@@ -26,13 +26,25 @@ if (self instanceof ServiceWorkerGlobalScope) {
     }
   });
 
-  self.addEventListener("activate", () => {
+  self.addEventListener("activate", (event) => {
     console.log("El service worker está activo.");
+    event.waitUntil(
+      limpiaCacheAntiguo().catch((error) => {
+        console.error("Error al limpiar caché antiguo:", error);
+      })
+    );
   });
 }
 
 async function llenaElCache() {
   console.log("Intentando cargar caché:", CACHE);
+  const cache = await caches.open(CACHE);
+  await cache.addAll(ARCHIVOS);
+  console.log("Cache cargado:", CACHE);
+  console.log("Versión:", VERSION);
+}
+
+async function limpiaCacheAntiguo() {
   const keys = await caches.keys();
   await Promise.all(
     keys.map((key) => {
@@ -42,19 +54,10 @@ async function llenaElCache() {
       }
     })
   );
-  const cache = await caches.open(CACHE);
-  await cache.addAll(ARCHIVOS);
-  console.log("Cache cargado:", CACHE);
-  console.log("Versión:", VERSION);
 }
 
-async function buscaLaRespuestaEnElCache(event) {
+async function buscaLaRespuestaEnElCache(request) {
   const cache = await caches.open(CACHE);
-  const request = event.request;
   const response = await cache.match(request, { ignoreSearch: true });
-  if (!response) {
-    return fetch(request);
-  } else {
-    return response;
-  }
+  return response || fetch(request);
 }
