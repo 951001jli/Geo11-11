@@ -1,4 +1,4 @@
-const VERSION = "2.06";
+const VERSION = "2.03";
 const CACHE = "pwamd";
 const ARCHIVOS = [/*... archivos ...*/];
 
